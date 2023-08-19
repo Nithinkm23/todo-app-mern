@@ -9,7 +9,7 @@ function App() {
     <div className="App">
 
       <Routes>
-       <Route path="/todohome" element={<Main child={<ToDoHome />} />} />
+       <Route path="/" element={<Main child={<ToDoHome />} />} />
         <Route path="/todoadd" element={<Main child={<ToDoAdd method="post" data={
           {
             

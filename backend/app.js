@@ -14,6 +14,12 @@ require('./db/mongodb'); // to connect to database
 const todoRoute = require('./routes/todoRoute');
 app.use('/api', todoRoute);
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, '/build')));
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '/build/index.html'));
+});
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server running in PORT ${PORT}`);

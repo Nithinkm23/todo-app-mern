@@ -40,12 +40,12 @@ const ToDoAdd = (props) => {
 
         // post function
         if (props.method === "post") {
-            axios.post(`http://localhost:5000/api/postdata`, data)
+            axios.post(`/api/postdata`, data)
                 .then((response) => {
                     if (response.data.message === "Posted successfully") {
                         console.log("response post", response);
                         Swal.fire('', response.data.message, 'success');
-                        navigate('/todohome');
+                        navigate('/');
                     }
                     else {
                         Swal.fire('Sorry', response.data.message, '');
@@ -55,7 +55,7 @@ const ToDoAdd = (props) => {
         }
         // update function
         if (props.method === "put") {
-            axios.put(`http://localhost:5000/api/putdata/${inputs._id}`, data)
+            axios.put(`/api/putdata/${inputs._id}`, data)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
                         Swal.fire('', response.data.message, 'success');
@@ -137,7 +137,7 @@ const ToDoAdd = (props) => {
                                     </div>
                                     {/* Button */}
                                     <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
-                                        <a href="/todohome"><button className="btn btn-warning">Back to Dashboard</button></a>
+                                        <a href="/"><button className="btn btn-warning">Back to Dashboard</button></a>
                                     </div>
                                 </div>
                             </div>

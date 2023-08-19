@@ -7,5 +7,20 @@
     "mongoose": "^7.4.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "to do app",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start":"node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mern",
+    "stack"
+  ],
+  "author": "Nithin K",
+  "license": "ISC"
 }
