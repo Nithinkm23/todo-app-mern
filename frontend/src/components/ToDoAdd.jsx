@@ -85,65 +85,69 @@ const ToDoAdd = (props) => {
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
                                     <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                        <label htmlFor="name" className="form-label"> Event Name :</label>
+                                        <label htmlFor="name" className="form-label">
+                                            Event Name :
+                                        </label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <input type="text"
+                                        <input
+                                            type="text"
                                             id="name"
-                                            className="form-control"
+                                            className={`form-control ${inputs.status === 'COMPLETED' ? 'completed-event' : ''
+                                                }`}
                                             name="eventname"
                                             value={inputs.eventname}
                                             onChange={inputHandler}
                                         />
-
                                     </div>
                                 </div>
-                                {/* Status  */}
-                                <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                    <div className="row">
-                                        <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                            <label htmlFor="course" className="form-label">Status :</label>
-                                        </div>
-                                        <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                            <select className="form-select required"
-                                                aria-label="Default select example"
-                                                name="status"
-                                                value={inputs.status}
-                                                onChange={inputHandler}>
-                                                <option defaultValue></option>
-                                                <option value="COMPLETED">COMPLETED</option>
-                                                <option value="ONGOING">ONGOING</option>
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                {/* Button*/}
-                                <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                    <div className="row">
-                                        {/* offset */}
-                                        <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
-                                        </div>
-                                        {/* Button Submit*/}
-                                        <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
-                                            <button className="btn btn-success" onClick={submitHandler}>Submit</button>
-                                        </div>
-                                        {/* Button */}
-                                        <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
-                                            <a href="/todohome"><button className="btn btn-warning">Back to Dashboard</button></a>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+                            {/* Status  */}
+                            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                <div className="row">
+                                    <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
+                                        <label htmlFor="course" className="form-label">Status :</label>
+                                    </div>
+                                    <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
+                                        <select className="form-select required"
+                                            aria-label="Default select example"
+                                            name="status"
+                                            value={inputs.status}
+                                            onChange={inputHandler}>
+                                            <option defaultValue></option>
+                                            <option value="COMPLETED">COMPLETED</option>
+                                            <option value="ONGOING">ONGOING</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {/* Button*/}
+                            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                <div className="row">
+                                    {/* offset */}
+                                    <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+                                    </div>
+                                    {/* Button Submit*/}
+                                    <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+                                        <button className="btn btn-success" onClick={submitHandler}>Submit</button>
+                                    </div>
+                                    {/* Button */}
+                                    <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
+                                        <a href="/todohome"><button className="btn btn-warning">Back to Dashboard</button></a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+       
     )
 }
 

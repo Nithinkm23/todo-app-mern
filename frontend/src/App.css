@@ -30,6 +30,34 @@
 
 .completed-task {
   text-decoration: line-through;
+  color: #999; /* Optional: Adjust the color of completed tasks */
+}
+
+/* Style for completed events */
+.completed-event {
+  text-decoration: line-through;
+  color: #888; /* Change color as desired */
+  font-style: italic;
+}
+
+/* Additional styling for the form container */
+.form-container {
+  background-color: #f8f9fa; /* Light gray background */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for submit button */
+.submit-button {
+  background-color: #28a745; /* Green color */
+  border-color: #28a745;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #218838; /* Darker green color on hover */
+  border-color: #1e7e34;
 }
 
 @keyframes App-logo-spin {

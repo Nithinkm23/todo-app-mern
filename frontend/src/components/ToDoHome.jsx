@@ -9,6 +9,7 @@ const ToDoHome = () => {
 
 
     const [data, setData] = useState([]);
+    const [filter, setFilter] = useState('all'); // Default to 'all'
     const [updation, setUpdation] = useState(false);
     const [singleval, setSingleval] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -18,21 +19,37 @@ const ToDoHome = () => {
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 5;//Number of item per page
 
-
+    const handleTaskStatusChange = (taskId) => {
+        const updatedData = data.map((item) =>
+          item._id === taskId ? { ...item, status: item.status === 'COMPLETED' ? 'ONGOING' : 'COMPLETED' } : item
+        );
+        setData(updatedData);
+        // You can also update the status on the server using an API call if needed
+      };
 
     //to get Learners data from database
     const fetchDatafromAPI = (pageNumber) => {
+
         return axios
             .get(`http://localhost:5000/api/getdata/`)
             .then((response) => {
                 //console.log("Data from get"+response.data);
 
                 const resData = response.data.data;
+
+                let filteredData = resData;
+                console.log("Filtered Data:", filteredData);
+                if (filter === 'COMPLETED') {
+                    filteredData = resData.filter(task => task.status === 'COMPLETED');
+                } else if (filter === 'ONGOING') {
+                    filteredData = resData.filter(task => task.status === 'ONGOING');
+                }
+
                 const startIndex = (pageNumber - 1) * pageSize;
                 const endIndex = startIndex + pageSize;
-                const paginatedData = resData.slice(startIndex, endIndex);
+                const paginatedData = filteredData.slice(startIndex, endIndex);
                 setData(paginatedData);
-                setTotalPages(Math.ceil(resData.length / pageSize));
+                setTotalPages(Math.ceil(filteredData.length / pageSize));
 
 
             })
@@ -88,6 +105,11 @@ const ToDoHome = () => {
         }
     }
 
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value);
+        setCurrentPage(1); // Reset page number when changing the filter
+    };
+
 
     let finalJSX =
         <div className="container w-75 mt-4 pt-4">
@@ -98,6 +120,38 @@ const ToDoHome = () => {
                 </Button>
             </Link>
             &nbsp;&nbsp;&nbsp;
+
+            {/* Filter controls */}
+            <div className="filter-controls">
+                <label>
+                    <input
+                        type="radio"
+                        value="all"
+                        checked={filter === 'all'}
+                        onChange={handleFilterChange}
+                    />
+                    All
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="COMPLETED"
+                        checked={filter === 'COMPLETED'}
+                        onChange={handleFilterChange}
+                    />
+                    Completed
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="ONGOING"
+                        checked={filter === 'ONGOING'}
+                        onChange={handleFilterChange}
+                    />
+                    Ongoing
+                </label>
+            </div>
+
 
             {/* to display to do data in a table */}
             {loading ?
@@ -113,6 +167,7 @@ const ToDoHome = () => {
                                     <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
+                                    <th>Check</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,6 +186,13 @@ const ToDoHome = () => {
                                             <Button variant="danger" onClick={() => deleteToDo(value._id)}>
                                                 <ion-icon name="close-circle"></ion-icon>
                                             </Button>
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                checked={value.status === 'COMPLETED'}
+                                                onChange={() => handleTaskStatusChange(value._id)}
+                                            />
                                         </td>
                                     </tr>
                                 ))}
