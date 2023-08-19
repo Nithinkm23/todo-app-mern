@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import Swal from 'sweetalert2'
 const ToDoAdd = (props) => {
-  //console.log("props data", props.data);
+  console.log("props data", props.data);
   const [inputs, setInputs] = useState(props.data);
   const navigate = useNavigate();
 
@@ -19,6 +19,7 @@ const ToDoAdd = (props) => {
       
 
       const { name, value } = e.target;
+      console.log(`Input changed - Name: ${name}, Value: ${value}`);
       setInputs({
           ...inputs, [name]: value
       });
@@ -77,7 +78,7 @@ return (
       <div>
           {/* To Do form */}
           <div className="container w-50 mt-5 pt-5  bg-secondary-subtle rounded">
-              <h3>Learner's form</h3>
+              <h3>TO DO Form</h3>
               <div className="row">
                   <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                       <div className="row g-2">
@@ -93,7 +94,7 @@ return (
                                       <input type="text"
                                           id="name"
                                           className="form-control"
-                                          name="name"
+                                          name="eventname"
                                           value={inputs.eventname}
                                           onChange={inputHandler}
                                       />
@@ -109,7 +110,7 @@ return (
                                   <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
                                       <select className="form-select required"
                                           aria-label="Default select example"
-                                          name="course"
+                                          name="status"
                                           value={inputs.status}
                                           onChange={inputHandler}>
                                           <option defaultValue></option>

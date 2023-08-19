@@ -3,11 +3,13 @@ const todoSchema = mongoose.Schema({
     
     eventname: {
         type: String,
-        required: true
+        required: true,
+        
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        enum: ['COMPLETED', 'ONGOING']
     },
     createdAt: {
         type: Date,

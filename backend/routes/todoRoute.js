@@ -14,7 +14,7 @@ router.get('/getdata' , async (req, res) => {
                   try {
                     const data = await tododata.find();
     
-                    res.status(200).json({  data });
+                    res.send({  data });
                   } catch (error) {
                     res.status(400).json({ message: "Can't get data" });
                   }  
@@ -22,19 +22,19 @@ router.get('/getdata' , async (req, res) => {
                 })
 
 //to post learner data from learners' form
-router.post('/postdata', (req, res) => {
+router.post('/postdata', async (req, res) => {
     try {
         const item = req.body;
         const newdata = new tododata(item);
        
-                   const savedData= newdata.save();
+                   const savedData= await newdata.save();
                     res.status(200).json({ message: "Posted successfully" });}
 
                     catch (error) {
-                        res.json({ message: "Post not successful" });
+                        res.status(500).json({ message: "Post not successful" });
                     }
             })
-
+ 
     
 
 //to update data
