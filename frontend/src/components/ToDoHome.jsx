@@ -108,7 +108,7 @@ const ToDoHome = () => {
                         <Table responsive bordered hover>
                             <thead>
                                 <tr class="table-success">
-                                    
+
                                     <th>Event Name</th>
                                     <th>Status</th>
                                     <th>Edit</th>
@@ -117,11 +117,11 @@ const ToDoHome = () => {
                             </thead>
                             <tbody>
                                 {data.map((value, index) => (
-                                    <tr key={index}>
-                                        
-                                        <td>{value.eventname}</td>
-                                        <td>{value.status}</td>
-                                        
+                                    <tr key={index} className={value.status === 'COMPLETED' ? 'completed-task' : ''}>
+
+                                        <td className={value.status === 'COMPLETED' ? 'completed-task' : ''}>{value.eventname}</td>
+                                        <td className={value.status === 'COMPLETED' ? 'completed-task' : ''}>{value.status}</td>
+
                                         <td>
                                             <Button variant="success" onClick={() => updateToDO(value)}>
                                                 <ion-icon name="create"></ion-icon>
