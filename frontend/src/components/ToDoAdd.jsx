@@ -40,7 +40,7 @@ const ToDoAdd = (props) => {
 
         // post function
         if (props.method === "post") {
-            axios.post(`/api/postdata`, data)
+            axios.post(`http://localhost:5000/api/postdata`, data)
                 .then((response) => {
                     if (response.data.message === "Posted successfully") {
                         console.log("response post", response);
@@ -55,7 +55,7 @@ const ToDoAdd = (props) => {
         }
         // update function
         if (props.method === "put") {
-            axios.put(`/api/putdata/${inputs._id}`, data)
+            axios.put(`http://localhost:5000/api/putdata/${inputs._id}`, data)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
                         Swal.fire('', response.data.message, 'success');

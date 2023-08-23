@@ -31,7 +31,7 @@ const ToDoHome = () => {
     const fetchDatafromAPI = (pageNumber) => {
 
         return axios
-            .get(`/api/getdata/`)
+            .get(`http://localhost:5000/api/getdata/`)
             .then((response) => {
                 //console.log("Data from get"+response.data);
 
@@ -65,7 +65,7 @@ const ToDoHome = () => {
     const deleteToDo = (id) => {
 
         axios
-            .delete(`/api/deldata/${id}`, data)
+            .delete(`http://localhost:5000/api/deldata/${id}`, data)
             .then((response) => {
                 if (response.data.message === 'Deleted successfully') {
                     //fetchDatafromAPI(currentPage);
